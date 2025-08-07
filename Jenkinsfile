@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                bat 'docker buiid -t p11.html'
+                bat 'docker build-t Expense-Tracker1 .'
             }
         }
         stage('Run Docker Container') {
