@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('clone Repo ') {
+            steps {
+                echo 'Repository clone by jenkins'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker buiid -t p11.html'
+            }
+        }
+        stage('Run Docker Container') {
+            steps {
+                bat '''
+                docker stop p11.html-site || exit 0 
+                docter rm static-site ||exit 0 
+                docker run -d -p 8080:80 --name p11.html
+                '''
+            }
+        }
+    }
+     post {
+        sucess { 
+            echo 'build completed sucessfully'
+        }
+            failure {
+                echo 'build failed'
+            }
+}
