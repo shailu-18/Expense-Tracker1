@@ -15,8 +15,8 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 bat '''
-                docker stop p11.html-site || exit 0 
-                docter rm static-site ||exit 0 
+                docker stop  Expense-Tracker1-site || exit 0 
+                docter rm  Expense-Tracker1 site ||exit 0 
                 docker run -d -p 8080:80 --name p11.html
                 '''
             }
